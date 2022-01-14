@@ -3,12 +3,7 @@ package com.tenniscourts.reservations;
 import com.tenniscourts.config.persistence.BaseEntity;
 import com.tenniscourts.guests.Guest;
 import com.tenniscourts.schedules.Schedule;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -24,11 +19,11 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Builder
 public class Reservation extends BaseEntity<Long> {
 
     @OneToOne
+    @NotNull
     private Guest guest;
 
     @ManyToOne
