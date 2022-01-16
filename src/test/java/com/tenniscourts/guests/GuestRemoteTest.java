@@ -5,11 +5,12 @@ import com.tenniscourts.TestConfigUtil;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
+import org.unitils.reflectionassert.ReflectionAssert;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -68,7 +69,7 @@ public class GuestRemoteTest extends TestConfigUtil {
         String json = result.getResponse().getContentAsString();
         GuestDTO actualGuestDTO = new ObjectMapper().readValue(json, GuestDTO.class);
 
-        assertEquals(expectedGuestDTO.getName(), actualGuestDTO.getName());
+        ReflectionAssert.assertLenientEquals(expectedGuestDTO, actualGuestDTO);
     }
 
     @Test
@@ -92,7 +93,7 @@ public class GuestRemoteTest extends TestConfigUtil {
         String json = result.getResponse().getContentAsString();
         GuestDTO actualGuestDTO = new ObjectMapper().readValue(json, GuestDTO.class);
 
-        assertEquals(expectedGuestDTO.getName(), actualGuestDTO.getName());
+        ReflectionAssert.assertLenientEquals(expectedGuestDTO, actualGuestDTO);
     }
 
     @Test
